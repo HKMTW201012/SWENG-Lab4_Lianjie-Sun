@@ -1,10 +1,8 @@
-﻿using SWENG421_Lab4.P2;
-
-namespace SWENG421_Lab4.P1
+﻿namespace SWENG421_Lab4.P2
 {
     public class Desk : ProductIF
     {
-        private int id;
+        private readonly int id;
         private string name;
         private double price;
 
@@ -15,25 +13,12 @@ namespace SWENG421_Lab4.P1
             this.price = price;
         }
 
-        public int GetID()
-        {
-            return id;
-        }
-        public string GetName()
-        {
-            return name;
-        }
-        public void SetName(string name)
-        {
-            this.name = name;
-        }
-        public double GetPrice()
-        {
-            return price;
-        }
-        public void SetPrice(double price)
-        {
-            this.price = price;
-        }
+        public int GetID() => id;
+
+        public string GetName() => name;
+        public void SetName(string name) => this.name = name;
+
+        public double GetPrice() => price;
+        public void SetPrice(double price) => this.price = price;
     }
 }

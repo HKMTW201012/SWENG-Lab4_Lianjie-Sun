@@ -5,6 +5,7 @@
         int GetID();
         string GetName();
         void SetName(string name);
+
         double GetPrice();
         void SetPrice(double price);
     }

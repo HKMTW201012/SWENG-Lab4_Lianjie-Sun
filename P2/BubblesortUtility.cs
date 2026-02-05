@@ -1,17 +1,17 @@
-﻿using SWENG421_Lab4.P2;
+﻿using System;
+using System.Collections.Generic;
 
-namespace SWENG421_Lab4.P1
+namespace SWENG421_Lab4.P2
 {
-    internal class BubblesortUtility<T> : SortUtility<T>, ISortAlgo<T> where T : ProductIF
+    internal static class BubblesortUtility<T> where T : ProductIF
     {
-        public BubblesortUtility() : base("bubblesort") { }
-
-        public override void Print(List<T> data)
+        public static void Print(List<T> data)
         {
             foreach (T item in data)
             {
-                System.Console.WriteLine($"{item.GetID()}, {item.GetName()}, {item.GetPrice()}");
+                Console.WriteLine($"{item.GetID()}, {item.GetName()}, {item.GetPrice():0.00}");
             }
+            Console.WriteLine();
         }
     }
 }

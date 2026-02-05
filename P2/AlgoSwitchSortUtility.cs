@@ -1,29 +1,44 @@
-﻿using SWENG421_Lab4.P2;
+﻿using System.Collections.Generic;
 
-namespace SWENG421_Lab4.P1
+namespace SWENG421_Lab4.P2
 {
-    internal class AlgoSwitchSortUtility<T> : SortUtility<T> where T : ProductIF
+    //The Only Visible Subclass of SortUtility
+    public class AlgoSwitchSortUtility<T> : SortUtility<T> where T : ProductIF
     {
-        private ISortAlgo<T> algorithm;
+        public AlgoSwitchSortUtility(string sortName) : base(sortName) 
+        { 
 
-        public AlgoSwitchSortUtility(string sortName, ISortAlgo<T> algorithm) : base(sortName)
-        {
-            this.algorithm = algorithm;
         }
 
-        public override List<T> Sort(List<T> data)
+        //Only Sorting! No Printing!
+        public override List<T> sort(List<T> data)
         {
-            return algorithm.Sort(data);
+            string name = (getName() ?? "bubblesort").ToLower();
+
+            if (name == "quicksort")
+            {
+                return QuicksortUtility<T>.Sort(data);
+            }
+
+            return base.sort(data);
         }
 
-        public override void Print(List<T> data)
+        //Printing After Completed Sorting
+        public List<T> sortAndPrint(List<T> data)
         {
-            algorithm.Print(data);
-        }
+            List<T> sorted = sort(data);
 
-        public void SetAlgorithm(ISortAlgo<T> algorithm)
-        {
-            this.algorithm = algorithm;
+            string name = (getName() ?? "bubblesort").ToLower();
+            if (name == "quicksort")
+            {
+                QuicksortUtility<T>.Print(sorted);
+            }
+            else
+            {
+                BubblesortUtility<T>.Print(sorted);
+            }
+
+            return sorted;
         }
     }
 }

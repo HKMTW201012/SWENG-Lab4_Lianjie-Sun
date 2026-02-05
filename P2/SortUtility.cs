@@ -1,4 +1,4 @@
-﻿
+﻿using System.Collections.Generic;
 
 namespace SWENG421_Lab4.P2
 {
@@ -11,14 +11,17 @@ namespace SWENG421_Lab4.P2
             this.sortName = sortName;
         }
 
-        public string GetName() {
-            return sortName; 
-        }
-        public void SetName(string sortName) { 
-            this.sortName = sortName; 
+        public string getName()
+        {
+            return sortName;
         }
 
-        public virtual List<T> Sort(List<T> data)
+        public void setName(string sortName)
+        {
+            this.sortName = sortName;
+        }
+
+        public virtual List<T> sort(List<T> data)
         {
             for (int i = 0; i < data.Count - 1; i++)
             {
@@ -26,7 +29,7 @@ namespace SWENG421_Lab4.P2
                 {
                     if (data[j].GetPrice() > data[j + 1].GetPrice())
                     {
-                        var temp = data[j];
+                        T temp = data[j];
                         data[j] = data[j + 1];
                         data[j + 1] = temp;
                     }
@@ -34,7 +37,5 @@ namespace SWENG421_Lab4.P2
             }
             return data;
         }
-
-        public virtual void Print(List<T> data) { }
     }
 }

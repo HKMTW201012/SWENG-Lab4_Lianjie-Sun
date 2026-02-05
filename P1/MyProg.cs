@@ -1,4 +1,5 @@
-﻿using SWENG421_Lab4.P2;
+﻿using System.Collections.Generic;
+using SWENG421_Lab4.P2;
 
 namespace SWENG421_Lab4.P1
 {
@@ -6,26 +7,24 @@ namespace SWENG421_Lab4.P1
     {
         public static void Main(string[] args)
         {
+            List<Desk> desks = GetProducts();
+
             Company xyz = new Company();
 
-            // Bubblesort
-            xyz.sortUtility = new AlgoSwitchSortUtility<ProductIF>("bubblesort", new BubblesortUtility<ProductIF>());
-            List<ProductIF> desks = GetProducts();
-            var bubbleSorted = xyz.sortUtility.Sort(desks);
-            xyz.sortUtility.Print(bubbleSorted);
+            xyz.sortUtility = new AlgoSwitchSortUtility<Desk>("bubblesort");
 
-            Console.WriteLine();
+            //Bubble Sort and Print
+            xyz.sortUtility.setName("bubblesort");
+            ((AlgoSwitchSortUtility<Desk>)xyz.sortUtility).sortAndPrint(desks);
 
-            // Quicksort
-            ((AlgoSwitchSortUtility<ProductIF>)xyz.sortUtility).SetAlgorithm(new QuicksortUtility<ProductIF>());
-            xyz.sortUtility.SetName("quicksort");
-            var quickSorted = xyz.sortUtility.Sort(desks);
-            xyz.sortUtility.Print(quickSorted);
+            //Quick Sort and Print
+            xyz.sortUtility.setName("quicksort");
+            ((AlgoSwitchSortUtility<Desk>)xyz.sortUtility).sortAndPrint(desks);
         }
 
-        public static List<ProductIF> GetProducts()
+        public static List<Desk> GetProducts()
         {
-            return new List<ProductIF>
+            return new List<Desk>
             {
                 new Desk(1, "Writing Desk", 20.30),
                 new Desk(2, "Corner Desk", 15.25),
